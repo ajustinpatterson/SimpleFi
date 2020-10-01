@@ -1,11 +1,10 @@
 const { Pool } = require ('pg');
-const password = require ('../../secrets/.config.js')
 
 const pool = new Pool ({
-  user: 'raph',
+  user: 'davidhardy',
   host: 'localhost',
-  database: 'simplefi_db',
-  password: password,
+  database: 'davidhardy',
+  password: 'admin',
   port: 5432
 });
 
