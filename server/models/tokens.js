@@ -1,10 +1,10 @@
-const pool = require ('./pool');
+const db = require ('.');
 const path = require ('path');
 
 async function getTokens () {
   try {
-    const tokens = await pool.query('select * from token');
-    return tokens.rows;
+    const tokens = await db.query('select * from token');
+    return tokens;
 
   } catch (err) {
     console.error(`Error at ${path.basename(__dirname)}/${path.basename(__filename)} ${err}`);
@@ -13,8 +13,8 @@ async function getTokens () {
 
 async function selectUserFieldTokens(queryStr) {
   try {
-    const tokens = await pool.query(`select * from token where ${queryStr}`);
-    return tokens.rows;
+    const tokens = await db.query(`select * from token where ${queryStr}`);
+    return tokens;
   } catch (err) {
     console.error(`Error at ${path.basename(__dirname)}/${path.basename(__filename)} ${err}`);
   }

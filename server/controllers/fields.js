@@ -3,6 +3,7 @@ const Fields = require ('../models/fields');
 async function getFields (req, res) {
   try {
     const fields = await Fields.getFields();
+    console.log(fields)
     res.status = 200;
     res.send(fields);
   } catch (err) {

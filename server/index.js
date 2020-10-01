@@ -1,12 +1,11 @@
 const express = require('express');
 const router = require('./router');
-// const pool = require('./models/pool');
+const db = require('./models');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
-const path = require('path')
+const path = require('path');
 dotenv.config({path:__dirname+'/../.env'});
-const Sequelize = require('sequelize')
 
 //pointless change
 // const { Client } = require('pg');
@@ -17,17 +16,9 @@ const Sequelize = require('sequelize')
 //     rejectUnauthorized: false
 //   }
 // });
-console.log(process.env)
-const sequelize = new Sequelize(process.env.URI, 
-  {
-    protocol: 'postgres',
-    dialect: 'postgres',
-    dialectOptions: {ssl:{rejectUnauthorized: false}},
-  })
 
 const app = express();
 const port = process.env.PORT || 3020;
-
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cors());
@@ -35,7 +26,7 @@ app.use(router);
 
 (async () => {
   try {
-    await sequelize.authenticate();
+    await db.authenticate();
     console.log('SimpleFi DB connected 🐘');
     app.listen(port, () => {
       console.log(`Solo server listening on localhost:${port} 🎉`)
