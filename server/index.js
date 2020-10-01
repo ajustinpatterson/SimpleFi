@@ -8,7 +8,7 @@ const path = require('path')
 dotenv.config({path:__dirname+'/../.env'});
 const Sequelize = require('sequelize')
 
-
+//pointless change
 // const { Client } = require('pg');
 
 // const client = new Client({
