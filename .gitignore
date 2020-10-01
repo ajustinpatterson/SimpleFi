@@ -1,9 +1,0 @@
-secrets/.config.js
-solo-project-proposal/
-
-
-# external
-.external/
-
-.env.local
-.gitignore.local
