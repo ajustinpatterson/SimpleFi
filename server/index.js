@@ -4,8 +4,11 @@ const router = require('./router');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const path = require('path')
+dotenv.config({path:__dirname+'/../.env'});
 const Sequelize = require('sequelize')
-dotenv.config();
+
+
 // const { Client } = require('pg');
 
 // const client = new Client({
@@ -14,7 +17,8 @@ dotenv.config();
 //     rejectUnauthorized: false
 //   }
 // });
-const sequelize = new Sequelize('postgres://hcoyfhcuaawtsf:1b4544fbea3825ad1793f7f5f50f0bede010a11a4963698c057de9d8d9d8c4e3@ec2-54-228-209-117.eu-west-1.compute.amazonaws.com:5432/d8pb16l0oa34hu?ssl=true', 
+console.log(process.env)
+const sequelize = new Sequelize(process.env.URI, 
   {
     protocol: 'postgres',
     dialect: 'postgres',
