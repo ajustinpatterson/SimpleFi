@@ -5,5 +5,5 @@ solo-project-proposal/
 # external
 .external/
 
-.env
-.gitignore
+.env.local
+.gitignore.local
