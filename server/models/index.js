@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 
+const db={} 
+
 const sequelize = new Sequelize('davidhardy', 'davidhardy', 'admin', { //REL reminder to change the table name
   host: 'localhost',
   dialect: 'postgres',

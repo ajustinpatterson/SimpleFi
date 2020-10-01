@@ -31,6 +31,9 @@ function App() {
         setAllTrackedLoaded(true);
     })
   }, [])
+
+  console.log(trackedFields)
+
   
   //Create token and field contract interfaces
   useEffect(() => {
@@ -43,13 +46,14 @@ function App() {
     //TODO: autorefresh when toggle account from Metamask
     if (window.ethereum) {
       const newAccount = await metamaskConnect();
-      if(!userAccount[0]) setUserAccount(newAccount);
-      else if (newAccount[0] !== userAccount[0]) {
+      // if(!userAccount[0]) setUserAccount(newAccount);
+      // else if
+      //  (newAccount[0] !== userAccount[0]) 
         const resetUserTokens = setUserTokens([]);
         const resetUserFields = setUserFields([]);
         Promise.all([resetUserTokens, resetUserFields])
           .then(resets => setUserAccount(newAccount))
-      }
+      
     } else {
       alert('Please install Metamask to use SimpleFi (https://metamask.io/)')
     }
