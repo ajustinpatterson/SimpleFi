@@ -18,13 +18,27 @@ describe("Welcome", () => {
       </BrowserRouter>
     );
 
-    // is this test even necessary? we know that if we can render the page that this should be here?
     expect(screen.getByText("Decentralised finance investing made easy!")).toBeInTheDocument();
   })
   
 
   // it("routes to the wallet dashboard when the connect wallet button is clicked")
+  
 
+
+
+  it("runs the connect prop a single time when the Link element is clicked", () => {
+    const onClick = jest.fn()
+    render(
+      <BrowserRouter>
+        <Welcome connect={onClick}/>
+      </BrowserRouter>
+    );
+    
+    fireEvent.click(screen.getByText(/connect wallet/i))
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  })
 
   // it("alerts that you do not have a Metamask account if it is not installed")
 })
