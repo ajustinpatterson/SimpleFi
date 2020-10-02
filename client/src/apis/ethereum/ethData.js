@@ -74,14 +74,14 @@ async function rewinder (field, trackedTokens) {
   const fieldHoldingPromises = [];
   const tokenIds = [];
 
-  field.seedTokens.forEach(token => {
-    const { token_id } = token;
-    console.log(token_id)
-    const tokenContract = trackedTokens.find(el => el.token_id === token_id).contract;
-    const fieldSeedHolding = tokenContract.balanceOf(field.address);
-    fieldHoldingPromises.push(fieldSeedHolding);
-    tokenIds.push(token_id);
-  })
+  // field.seedTokens.forEach(token => {
+  //   const { token_id } = token;
+  //   console.log(token_id)
+  //   const tokenContract = trackedTokens.find(el => el.token_id === token_id).contract;
+  //   const fieldSeedHolding = tokenContract.balanceOf(field.address);
+  //   fieldHoldingPromises.push(fieldSeedHolding);
+  //   tokenIds.push(token_id);
+  // })
   
   //ASK: is this horrendous code? Only solution I found to nested promises
   await Promise.all(fieldHoldingPromises)
