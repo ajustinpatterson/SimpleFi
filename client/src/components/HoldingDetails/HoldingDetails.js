@@ -5,10 +5,10 @@ import HoldingDetailAction from '../HoldingDetailAction/HoldingDetailAction';
 
 export default function HoldingDetails ({userTokens, userFields}) {
   let { tokenName } = useParams();
-  console.log(userTokens)
-  console.log(' ---> tokenName', tokenName);
+  // console.log(userTokens)
+  // console.log(' ---> tokenName', tokenName);
   const detailedToken = userTokens.filter(token => token.name === tokenName);
-  console.log(' ---> detailedToken', detailedToken);
+  // console.log(' ---> detailedToken', detailedToken);
 
   return (
     <HoldingDetailAction available={true} amount={detailedToken.balance}/>

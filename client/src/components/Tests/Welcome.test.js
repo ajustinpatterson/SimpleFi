@@ -9,23 +9,19 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import Welcome from "../Welcome/Welcome"
 import '@testing-library/jest-dom/extend-expect'
+import renderer from "react-test-renderer"
 
 describe("Welcome", () => {
-  it("loads the page content", () => {
-    render(
-      <BrowserRouter>
-        <Welcome/>
-      </BrowserRouter>
-    );
 
-    expect(screen.getByText("Decentralised finance investing made easy!")).toBeInTheDocument();
+  it("renders correctly", () => {
+    const tree = renderer.create(
+    <BrowserRouter>
+      <Welcome />
+    </BrowserRouter>
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   })
   
-
-  // it("routes to the wallet dashboard when the connect wallet button is clicked")
-  
-
-
 
   it("runs the connect prop a single time when the Link element is clicked", () => {
     const onClick = jest.fn()
@@ -40,5 +36,4 @@ describe("Welcome", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   })
 
-  // it("alerts that you do not have a Metamask account if it is not installed")
 })

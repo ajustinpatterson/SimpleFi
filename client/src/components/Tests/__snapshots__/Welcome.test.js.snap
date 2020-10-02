@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Welcome renders correctly 1`] = `
+Array [
+  <div
+    className="welcome"
+  >
+    <div
+      className="welcome-splash"
+    >
+      <div
+        className="splash-text"
+      >
+        <h1>
+          SimpleFi
+        </h1>
+        <h2>
+          Decentralised finance investing made easy!
+        </h2>
+      </div>
+      <div
+        className="splash-connect"
+      >
+        <a
+          exact={true}
+          href="/dashboard"
+          onClick={[Function]}
+        >
+          <button
+            className="welcome-button"
+          >
+            Connect wallet
+          </button>
+        </a>
+      </div>
+    </div>
+    <div
+      className="welcome-media"
+    >
+      <img
+        alt="Welcome to SimpleFi"
+        className="welcome-media-image"
+        src="simpleFi-splash3.svg"
+      />
+    </div>
+  </div>,
+  <footer>
+    <span>
+      © 2020 SimpleFi
+    </span>
+    <span>
+      ·
+    </span>
+    <span>
+      Privacy Policy
+    </span>
+    <span>
+      ·
+    </span>
+    <span>
+      Twitter
+    </span>
+    <span>
+      ·
+    </span>
+    <span>
+      Telegram
+    </span>
+  </footer>,
+]
+`;

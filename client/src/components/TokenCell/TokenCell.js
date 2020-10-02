@@ -3,13 +3,15 @@ import './TokenCell.css';
 
 export default function TokenCell ( {header, content, index, currencyCells} ) {
 
+console.log(currencyCells)
+
   const cellMarkup = header ? (
     <th className="cell cell-header">
       {content}
     </th>
   ) : (
-    <td className={`cell cell-value${currencyCells[index] ? ' cell-currency' : ''}`}>
-      {content}
+    <td className='cell cell-values'>
+      {currencyCells[index] ? `$${content}` : content}
     </td>
   )
 
