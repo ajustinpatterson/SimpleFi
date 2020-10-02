@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<footer>
+  <span>
+    © 2020 SimpleFi
+  </span>
+  <span>
+    ·
+  </span>
+  <span>
+    Privacy Policy
+  </span>
+  <span>
+    ·
+  </span>
+  <span>
+    Twitter
+  </span>
+  <span>
+    ·
+  </span>
+  <span>
+    Telegram
+  </span>
+</footer>
+`;
