@@ -25,31 +25,21 @@ beforeAll(async () => {
   );
 });
 
-describe('changeUserName', () => {
-  it('should update username in db', async () => {
-    const db = { getRepository: jest.fn() };
-    const repository = { updateUserName: jest.fn() };
-
-    db.getRepository.mockReturnValue(repository);
-    repository.updateUserName.mockReturnValue(Promise.resolve('updated'));
-
-    const result = await changeUserName(db, '1', 'username');
-
-    expect(result).toEqual('updated');
-    expect(repository.updateUserName).toHaveBeenCalledTimes(1);
-    expect(repository.updateUserName).toHaveBeenCalledWith('1', 'username');
+describe('getFields', () => {
+  test('query should return an array of values', (done) => {
+    try {
+      expect(Array.isArray(fields)).toBe(true);
+      done();
+    } catch (err) {
+      done(err);
+    }
+  });
+  test('first value should be a string', (done) => {
+    try {
+      expect(typeof fields[0]).toBe('string');
+      done();
+    } catch (err) {
+      done(err);
+    }
   });
 });
-
-// describe('getFields', () => {
-//   test('should get all fields from db', async () => {
-//     try {
-//       expect(fields.getFields().length).toBeTruthy();
-//     } catch (err) {}
-//   }),
-//     test('should return an array with a length of 2', () => {
-//       try {
-//         expect(fields.getFields().length).toHaveBeenCalled();
-//       } catch (err) {}
-//     });
-// });
