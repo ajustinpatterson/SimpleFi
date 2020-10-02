@@ -4,7 +4,7 @@ const path = require ('path');
 async function getTokens () {
   try {
     const tokens = await db.query('select * from token');
-    return tokens;
+    return tokens[0];
 
   } catch (err) {
     console.error(`Error at ${path.basename(__dirname)}/${path.basename(__filename)} ${err}`);

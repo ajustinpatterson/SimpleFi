@@ -32,7 +32,8 @@ function App() {
     })
   }, [])
 
-  console.log(trackedFields)
+  // console.log(trackedFields)
+  // console.log(trackedTokens)
 
   
   //Create token and field contract interfaces
@@ -108,6 +109,7 @@ function App() {
     if (userFields.length && userTokens.length && !rewoundFlag){
       //TODO: what if usertokens not set yet?
       const updatedUserTokens = [...userTokens];
+      console.log(updatedUserTokens)
       const lockedUserTokens = [];
       userFields.forEach(async field => {
         setRewoundFlag(true);
@@ -133,6 +135,8 @@ function App() {
       //FIXME: change trigger to a userField loaded flag to avoid duplicate renders
     }
   }, [userFields, userTokens])
+
+  
 
   return (
     <div>

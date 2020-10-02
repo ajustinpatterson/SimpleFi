@@ -76,6 +76,7 @@ async function rewinder (field, trackedTokens) {
 
   field.seedTokens.forEach(token => {
     const { token_id } = token;
+    console.log(token_id)
     const tokenContract = trackedTokens.find(el => el.token_id === token_id).contract;
     const fieldSeedHolding = tokenContract.balanceOf(field.address);
     fieldHoldingPromises.push(fieldSeedHolding);

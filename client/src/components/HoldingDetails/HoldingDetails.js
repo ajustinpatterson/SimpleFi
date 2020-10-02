@@ -5,6 +5,7 @@ import HoldingDetailAction from '../HoldingDetailAction/HoldingDetailAction';
 
 export default function HoldingDetails ({userTokens, userFields}) {
   let { tokenName } = useParams();
+  console.log(userTokens)
   console.log(' ---> tokenName', tokenName);
   const detailedToken = userTokens.filter(token => token.name === tokenName);
   console.log(' ---> detailedToken', detailedToken);
