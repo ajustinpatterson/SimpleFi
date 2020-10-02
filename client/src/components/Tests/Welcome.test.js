@@ -18,8 +18,10 @@ describe("Welcome", () => {
       </BrowserRouter>
     );
 
+    // is this test even necessary? we know that if we can render the page that this should be here?
     expect(screen.getByText("Decentralised finance investing made easy!")).toBeInTheDocument();
   })
+  
 
   // it("routes to the wallet dashboard when the connect wallet button is clicked")
 
