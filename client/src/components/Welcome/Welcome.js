@@ -4,9 +4,8 @@ import simpleFiSplash from '../../assets/images/simpleFi-splash3.svg';
 import './Welcome.css';
 import Footer from '../Footer/Footer';
 
-export default function Welcome ({connect, setSplash}) {
+export default function Welcome ({connect}) {
 
-  useEffect(() => setSplash(false), [])
   const br = '\n';
 
   return (

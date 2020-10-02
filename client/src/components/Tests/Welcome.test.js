@@ -6,11 +6,23 @@ import {
   fireEvent,
   screen
 } from "@testing-library/react";
-
+import { BrowserRouter } from 'react-router-dom';
 import Welcome from "../Welcome/Welcome"
+import '@testing-library/jest-dom/extend-expect'
 
 describe("Welcome", () => {
-  it("loads the page content")
+  it("loads the page content", () => {
+    render(
+      <BrowserRouter>
+        <Welcome/>
+      </BrowserRouter>
+    );
 
-  it("routes to the wallet when the connect wallet button is clicked")
+    expect(screen.getByText("Decentralised finance investing made easy!")).toBeInTheDocument();
+  })
+
+  // it("routes to the wallet dashboard when the connect wallet button is clicked")
+
+
+  // it("alerts that you do not have a Metamask account if it is not installed")
 })
