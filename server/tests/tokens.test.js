@@ -1,4 +1,4 @@
-const fields = require('./fields');
+const tokens = require('./tokens');
 require('dotenv').config();
 const Sequelize = require('sequelize');
 require('dotenv').config();
@@ -26,15 +26,15 @@ beforeEach(async () => {
   );
 });
 
-describe('getFields', () => {
-  test('should get all fields from db', async () => {
+describe('getTokens', () => {
+  test('should get all entries in "tokens" from db', async () => {
     try {
-      expect(fields.getFields().length).toBeTruthy();
+      expect(tokens.getTokens().length).toBeTruthy();
     } catch (err) {}
   }),
-    test('should have a return an array with a length of 2', () => {
+    test('should return an array with a length of 2', () => {
       try {
-        expect(fields.getFields().length).toHaveBeenCalled();
+        expect(tokens.getFields().length).toHaveBeenCalled();
       } catch (err) {}
     });
 });

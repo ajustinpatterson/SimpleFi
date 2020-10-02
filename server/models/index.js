@@ -20,4 +20,7 @@ const sequelize = new Sequelize(
   },
 );
 
-module.exports = sequelize;
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;
