@@ -1,15 +1,19 @@
-const db = require ('.');
-const path = require ('path');
+const db = require('.');
+const path = require('path');
 
-async function getFields () {
+async function getFields() {
   try {
     const fields = await db.query('select * from field');
     return fields[0];
   } catch (err) {
-    console.error(`Error at ${path.basename(__dirname)}/${path.basename(__filename)} ${err}`);
-  } 
+    console.error(
+      `Error at ${path.basename(__dirname)}/${path.basename(
+        __filename,
+      )} ${err}`,
+    );
+  }
 }
 
 module.exports = {
   getFields,
-}
+};
