@@ -1,24 +1,28 @@
-const Tokens = require ('../models/tokens');
-const path = require('path')
+const Tokens = require('../models/tokens');
+const path = require('path');
 const helpers = require('./helpers');
 
-async function getTokens (req, res) {
+async function getTokens(req, res) {
   try {
     const tokens = await Tokens.getTokens();
     res.status = 200;
     res.send(tokens);
   } catch (err) {
-    console.error(`Error at ${path.basename(__dirname)}/${path.basename(__filename)} ${err}`);
+    console.error(
+      `Error at ${path.basename(__dirname)}/${path.basename(
+        __filename,
+      )} ${err}`,
+    );
     res.sendStatus(500);
   }
-} 
+}
 
-async function getUserFieldTokens (req, res) {
+async function getUserFieldTokens(req, res) {
   try {
-    tokenIds = JSON.parse(req.params.tokenIds)
-    const {seedTokens, cropTokens} = tokenIds;
-    const seedTokenQuery = helpers.generateFieldTokenQuery(seedTokens)
-    const cropTokenQuery = helpers.generateFieldTokenQuery(cropTokens)
+    tokenIds = JSON.parse(req.params.tokenIds);
+    const { seedTokens, cropTokens } = tokenIds;
+    const seedTokenQuery = helpers.generateFieldTokenQuery(seedTokens);
+    const cropTokenQuery = helpers.generateFieldTokenQuery(cropTokens);
     const returnedTokens = {};
 
     if (seedTokenQuery) {
@@ -35,15 +39,17 @@ async function getUserFieldTokens (req, res) {
     } else {
       res.sendStatus(204);
     }
-
-  } catch(err) {
-    console.error(`Error at ${path.basename(__dirname)}/${path.basename(__filename)} ${err}`);
+  } catch (err) {
+    console.error(
+      `Error at ${path.basename(__dirname)}/${path.basename(
+        __filename,
+      )} ${err}`,
+    );
     res.sendStatus(500);
   }
 }
 
-
 module.exports = {
   getTokens,
   getUserFieldTokens,
-}
+};
