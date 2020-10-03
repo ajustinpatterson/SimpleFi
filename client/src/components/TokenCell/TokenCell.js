@@ -3,8 +3,6 @@ import './TokenCell.css';
 
 export default function TokenCell ( {header, content, index, currencyCells} ) {
 
-console.log(currencyCells)
-
   const cellMarkup = header ? (
     <th className="cell cell-header">
       {content}
