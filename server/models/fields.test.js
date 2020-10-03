@@ -1,7 +1,10 @@
-const { getFields } = require('./fields');
+const { getTokens, selectUserFieldTokens } = require('./tokens');
+require('dotenv').config();
+const Sequelize = require('sequelize');
 require('dotenv').config();
 const db = {};
 const path = require('path');
+const sequelize = require('.');
 
 describe('getFields', () => {
   test('query should return values', () => {
