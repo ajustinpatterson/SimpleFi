@@ -5,8 +5,6 @@ require('dotenv').config();
 const db = {};
 const path = require('path');
 
-console.log(getFields);
-
 beforeAll(async () => {
   const sequelize = await new Sequelize(
     process.env.DATABASE,
@@ -30,14 +28,24 @@ beforeAll(async () => {
 describe('getFields', () => {
   test('query should return values', () => {
     return getFields().then((data) => {
-      console.log(data[0]);
       expect(data).toBeTruthy();
     });
   });
   test('values should be inside an array', () => {
     return getFields().then((data) => {
-      console.log({ data });
       expect(Array.isArray(data)).toBe(true);
+    });
+  });
+  test('array should contain data objects', () => {
+    return getFields().then((data) => {
+      expect(typeof data[0][0] === 'object' && !Array.isArray(data[0][0])).toBe(
+        true,
+      );
+    });
+  });
+  test('should return an object with a "field_id" property', () => {
+    return getFields().then((data) => {
+      expect(data[0][0].field_id).toBeTruthy();
     });
   });
 });
