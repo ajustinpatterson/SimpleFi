@@ -1,9 +1,11 @@
-const fields = require('../models/fields');
+const { getFields } = require('../models/fields');
 require('dotenv').config();
 const Sequelize = require('sequelize');
 require('dotenv').config();
 const db = {};
 const path = require('path');
+
+console.log(getFields);
 
 beforeAll(async () => {
   const sequelize = await new Sequelize(
@@ -26,20 +28,16 @@ beforeAll(async () => {
 });
 
 describe('getFields', () => {
-  test('query should return an array of values', (done) => {
-    try {
-      expect(Array.isArray(fields)).toBe(true);
-      done();
-    } catch (err) {
-      done(err);
-    }
+  test('query should return values', () => {
+    return getFields().then((data) => {
+      console.log(data[0]);
+      expect(data).toBeTruthy();
+    });
   });
-  test('first value should be a string', (done) => {
-    try {
-      expect(typeof fields[0]).toBe('string');
-      done();
-    } catch (err) {
-      done(err);
-    }
+  test('values should be inside an array', () => {
+    return getFields().then((data) => {
+      console.log({ data });
+      expect(Array.isArray(data)).toBe(true);
+    });
   });
 });
