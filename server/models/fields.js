@@ -4,7 +4,7 @@ const path = require('path');
 async function getFields() {
   try {
     const fields = await db.sequelize.query('select * from field');
-    return fields;
+    return fields[0];
   } catch (err) {
     console.error(
       `Error at ${path.basename(__dirname)}/${path.basename(
