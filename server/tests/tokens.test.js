@@ -1,31 +1,10 @@
-const { getTokens, selectUSerFieldTokens } = require('../models/tokens');
+const { getTokens, selectUserFieldTokens } = require('../models/tokens');
 require('dotenv').config();
 const Sequelize = require('sequelize');
 require('dotenv').config();
 const db = {};
 const path = require('path');
-
-console.log(getTokens());
-
-beforeAll(async () => {
-  const sequelize = await new Sequelize(
-    process.env.DATABASE,
-    process.env.USERNAME,
-    process.env.PASSWORD,
-    {
-      //REL reminder to change the table name
-      host: 'localhost',
-      dialect: 'postgres',
-      logging: false,
-      pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000,
-      },
-    },
-  );
-});
+const sequelize = require('../models');
 
 describe('getTokens', () => {
   test('query should return values', () => {
@@ -49,5 +28,13 @@ describe('getTokens', () => {
     return getTokens().then((data) => {
       expect(data[0].token_id).toBeTruthy();
     });
+  });
+});
+
+describe('', () => {
+  test('', () => {
+    return selectUserFieldTokens(
+      `token_id = 2f996b90-d62b-4b79-a153-495dbdc728c0`,
+    ).then((data) => console.log(data));
   });
 });
