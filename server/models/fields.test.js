@@ -1,4 +1,4 @@
-const { getTokens, selectUserFieldTokens } = require('./tokens');
+const { getFields } = require('./fields');
 require('dotenv').config();
 const Sequelize = require('sequelize');
 const db = {};
@@ -18,14 +18,12 @@ describe('getFields', () => {
   });
   test('array should contain data objects', () => {
     return getFields().then((data) => {
-      expect(typeof data[0][0] === 'object' && !Array.isArray(data[0][0])).toBe(
-        true,
-      );
+      expect(typeof data[0] === 'object' && !Array.isArray(data[0])).toBe(true);
     });
   });
   test('should return an object with a "field_id" property', () => {
     return getFields().then((data) => {
-      expect(data[0][0].field_id).toBeTruthy();
+      expect(data[0].field_id).toBeTruthy();
     });
   });
 });
