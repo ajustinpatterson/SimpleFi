@@ -70,8 +70,10 @@ export default function MyAssets ({userTokens, userFields, apis, setSplash}) {
       underlying = underlying.slice(0, -2);
       farming = farming.slice(0, -2);
       tempFieldValues.push([name, balance.toFixed(2), underlying, farming]);
+      console.log(userFields)
     })
     setFieldValues(tempFieldValues)
+  
   }, [userFields])
 
   return (

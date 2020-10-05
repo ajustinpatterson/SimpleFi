@@ -4,7 +4,7 @@ import simpleFiSplash from '../../assets/images/simpleFi-splash3.svg';
 import './Welcome.css';
 import Footer from '../Footer/Footer';
 
-export default function Welcome ({connect}) {
+export default function Welcome ({ connect }) {
 
   const br = '\n';
 

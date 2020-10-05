@@ -21,7 +21,6 @@ describe("Welcome", () => {
     ).toJSON();
     expect(tree).toMatchSnapshot();
   })
-  
 
   it("runs the connect prop a single time when the Link element is clicked", () => {
     const onClick = jest.fn()

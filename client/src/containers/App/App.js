@@ -32,10 +32,7 @@ function App() {
     })
   }, [])
 
-  // console.log(trackedFields)
-  // console.log(trackedTokens)
 
-  
   //Create token and field contract interfaces
   useEffect(() => {
     setTrackedTokens(trackedTokens => apis.createContracts(trackedTokens, 'erc20'));
@@ -109,7 +106,6 @@ function App() {
     if (userFields.length && userTokens.length && !rewoundFlag){
       //TODO: what if usertokens not set yet?
       const updatedUserTokens = [...userTokens];
-      console.log(updatedUserTokens)
       const lockedUserTokens = [];
       userFields.forEach(async field => {
         setRewoundFlag(true);
