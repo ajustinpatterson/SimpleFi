@@ -1,10 +1,10 @@
-const db = require('.');
-const path = require('path');
+import db from '.';
+import path from 'path';
 
-async function getTokens() {
+async function getTokens(): Promise<string> {
   try {
     // console.log('db is: ', await db.sequelize.query('select * from token'));
-    const tokens = await db.sequelize.query('select * from token');
+    const tokens: {} = await db.sequelize.query('select * from token');
     return tokens[0];
   } catch (err) {
     console.error(
@@ -15,9 +15,9 @@ async function getTokens() {
   }
 }
 
-async function selectUserFieldTokens(queryStr) {
+async function selectUserFieldTokens(queryStr): Promise<{}> {
   try {
-    const tokens = await db.sequelize.query(
+    const tokens: {} = await db.sequelize.query(
       `select * from token where ${queryStr}`,
     );
     return tokens;
@@ -30,7 +30,4 @@ async function selectUserFieldTokens(queryStr) {
   }
 }
 
-module.exports = {
-  getTokens,
-  selectUserFieldTokens,
-};
+export { getTokens, selectUserFieldTokens };
