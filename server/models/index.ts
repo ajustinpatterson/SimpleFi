@@ -1,7 +1,6 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 dotenv.config();
-const db: {} = {};
 
 const sequelize = new Sequelize(
   process.env.DATABASE,
@@ -21,7 +20,9 @@ const sequelize = new Sequelize(
   },
 );
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+const db: {} = {
+  sequelize: sequelize,
+  Sequelize: Sequelize,
+};
 
 export { db };
