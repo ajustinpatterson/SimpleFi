@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2017",
+    "declaration": true,
+    "sourceMap": true
+  },
+  "include": ["server"]
+}

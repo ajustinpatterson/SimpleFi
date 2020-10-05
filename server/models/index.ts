@@ -1,6 +1,7 @@
+export {};
 const Sequelize = require('sequelize');
 require('dotenv').config();
-const db = {};
+const db: any = {};
 
 const sequelize = new Sequelize(
   process.env.DATABASE,

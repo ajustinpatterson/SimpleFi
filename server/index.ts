@@ -1,6 +1,6 @@
 const express = require('express');
-const router = require('./router');
-const db = require('./models');
+const router: void = require('./router');
+const db: any = require('./models');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
