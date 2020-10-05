@@ -24,7 +24,10 @@
     "enzyme-adapter-react-16": "^1.15.5",
     "jest": "^26.4.2",
     "jest-dom": "^4.0.0",
-    "react-testing-library": "^8.0.1"
+    "react-testing-library": "^8.0.1",
+    "source-map-loader": "^1.1.0",
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3"
   },
   "config": {
     "commitizen": {
@@ -34,6 +37,8 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
+    "@types/react": "^16.9.50",
+    "@types/react-dom": "^16.9.8",
     "dotenv": "^8.2.0"
   }
 }

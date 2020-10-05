@@ -24,16 +24,16 @@
   },
 ];
 
-Old format:
-{
-  "_id" : ObjectId("5f5940b28153161aff4c55ff"),
-  "name" : "Eth",
-  "apiId" : "ethereum",
-  "transactions" : [
-    {
-      "date" : ISODate("2020-09-09T20:52:46.805Z"),
-      "_id" : ObjectId("5f5940b28153161aff4c5600"),
-      "bought" : true,
-      "price" : 300, "amount" : 2
-    } ],
-    "__v" : 0 }
+// Old format:
+// {
+//   "_id" : ObjectId("5f5940b28153161aff4c55ff"),
+//   "name" : "Eth",
+//   "apiId" : "ethereum",
+//   "transactions" : [
+//     {
+//       "date" : ISODate("2020-09-09T20:52:46.805Z"),
+//       "_id" : ObjectId("5f5940b28153161aff4c5600"),
+//       "bought" : true,
+//       "price" : 300, "amount" : 2
+//     } ],
+//     "__v" : 0 }
