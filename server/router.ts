@@ -1,4 +1,6 @@
-const router = require('express').Router();
+export {};
+import * as express from 'express';
+const router = express();
 const controllers = require('./controllers');
 
 //TODO: create multiple users and record transactions

@@ -1,10 +1,10 @@
-const express = require('express');
-const router: void = require('./router');
-const db: any = require('./models');
-const cors = require('cors');
-const morgan = require('morgan');
-const dotenv = require('dotenv');
-const path = require('path');
+import * as express from 'express';
+import * as router from './router';
+const db = require('./models');
+import cors = require('cors');
+import morgan = require('morgan');
+import dotenv = require('dotenv');
+import path = require('path');
 dotenv.config();
 
 const app = express();
