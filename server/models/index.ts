@@ -25,4 +25,4 @@ const db: {} = {
   Sequelize: Sequelize,
 };
 
-export { db };
+export default { sequelize, Sequelize };

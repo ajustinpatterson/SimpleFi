@@ -1,6 +1,6 @@
 import express from 'express';
 import { router } from './router';
-import { db } from './models';
+import db from './models';
 import cors = require('cors');
 import morgan = require('morgan');
 import dotenv from 'dotenv';
