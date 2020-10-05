@@ -18,6 +18,6 @@ getTokens().then((data) => console.log(data));
 
 describe('getTokens', () => {
   test('test function', () => {
-    return getTokens(req.method).then((data) => console.log(data));
+    return getTokens(mocks.req.method).then((data) => console.log(data));
   });
 });
