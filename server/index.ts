@@ -1,14 +1,14 @@
-import * as express from 'express';
-import * as router from './router';
-const db = require('./models');
+import express from 'express';
+import { router } from './router';
+import { db } from './models';
 import cors = require('cors');
 import morgan = require('morgan');
-import dotenv = require('dotenv');
-import path = require('path');
+import dotenv from 'dotenv';
+import path from 'path';
 dotenv.config();
 
-const app = express();
-const port = 3020;
+const app: any = express();
+const port: number = 3020;
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cors());
