@@ -1,7 +1,7 @@
 import React from 'react';
 import './Footer.css';
 
-export default function Footer () {
+export default function Footer (): JSX.Element {
   return (
     <footer>
       <span>© 2020 SimpleFi</span>
