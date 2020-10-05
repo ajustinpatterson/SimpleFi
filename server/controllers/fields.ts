@@ -1,10 +1,10 @@
-import { Express, Request, Response, NextFunction } from 'express';
-const Fields = require('../models/fields');
+import { Express, Request, Response, NextFunction, response } from 'express';
+import { getFields } from '../models/fields';
 
-async function getFields(req: Request, res: Response) {
+async function getAllFields(req: Request, res: Response): Promise<void> {
   try {
-    const fields = await Fields.getFields();
-    res.status = 200;
+    const fields: {} = await getFields();
+    res.status(200);
     res.send(fields);
   } catch (err) {
     console.error(
@@ -16,6 +16,4 @@ async function getFields(req: Request, res: Response) {
   }
 }
 
-module.exports = {
-  getFields,
-};
+export { getAllFields };

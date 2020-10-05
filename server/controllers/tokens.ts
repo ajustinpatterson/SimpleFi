@@ -1,11 +1,12 @@
-const Tokens = require('../models/tokens');
-const path = require('path');
-const helpers = require('./helpers');
+import { Request, Response } from 'express';
+import { getTokens, selectUserFieldTokens } from '../models/tokens';
+import path from 'path';
+import { generateFieldTokenQuery } from './helpers';
 
-async function getTokens(req, res) {
+async function getAllTokens(req: Request, res: Response): Promise<void> {
   try {
-    const tokens = await Tokens.getTokens();
-    res.status = 200;
+    const tokens: {} = await getTokens();
+    res.status(200);
     res.send(tokens);
   } catch (err) {
     console.error(
@@ -17,24 +18,24 @@ async function getTokens(req, res) {
   }
 }
 
-async function getUserFieldTokens(req, res) {
+async function getUserFieldTokens(req: Request, res: Response): Promise<void> {
   try {
-    tokenIds = JSON.parse(req.params.tokenIds);
+    tokenIds: [] = JSON.parse(req.params.tokenIds);
     const { seedTokens, cropTokens } = tokenIds;
-    const seedTokenQuery = helpers.generateFieldTokenQuery(seedTokens);
-    const cropTokenQuery = helpers.generateFieldTokenQuery(cropTokens);
+    const seedTokenQuery: {} = generateFieldTokenQuery(seedTokens);
+    const cropTokenQuery: {} = generateFieldTokenQuery(cropTokens);
     const returnedTokens = {};
 
     if (seedTokenQuery) {
-      const returnedSeed = await Tokens.selectUserFieldTokens(seedTokenQuery);
+      const returnedSeed: {} = await selectUserFieldTokens(seedTokenQuery);
       returnedTokens.seedTokens = returnedSeed;
     }
     if (cropTokenQuery) {
-      returnedCrop = await Tokens.selectUserFieldTokens(cropTokenQuery);
+      returnedCrop = await selectUserFieldTokens(cropTokenQuery);
       returnedTokens.cropTokens = returnedCrop;
     }
     if (Object.keys(returnedTokens).length) {
-      res.status = 200;
+      res.status(200);
       res.send(returnedTokens);
     } else {
       res.sendStatus(204);
@@ -49,7 +50,4 @@ async function getUserFieldTokens(req, res) {
   }
 }
 
-module.exports = {
-  getTokens,
-  getUserFieldTokens,
-};
+export { getAllTokens, getUserFieldTokens };

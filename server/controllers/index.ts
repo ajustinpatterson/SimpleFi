@@ -1,4 +1,4 @@
-const { getTokens, getUserFieldTokens } = require('./tokens');
-const { getFields } = require('./fields');
+import { getAllTokens, getUserFieldTokens } from './tokens';
+import { getAllFields } from './fields';
 
-export { getTokens, getUserFieldTokens, getFields };
+export { getAllTokens, getUserFieldTokens, getAllFields };

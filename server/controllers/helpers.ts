@@ -7,6 +7,4 @@ function generateFieldTokenQuery(tokenIds) {
   return queryStr.slice(0, -4);
 }
 
-module.exports = {
-  generateFieldTokenQuery,
-};
+export { generateFieldTokenQuery };
