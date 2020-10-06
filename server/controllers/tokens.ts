@@ -28,11 +28,7 @@ async function getUserFieldTokens(req: Request, res: Response): Promise<void> {
     );
     const seedTokenQuery: string = generateFieldTokenQuery(seedTokens);
     const cropTokenQuery: string = generateFieldTokenQuery(cropTokens);
-    const returnedTokens: any = {};
-    console.log('seed and crop are ', seedTokens, cropTokens);
-
-    console.log('queries are ', seedTokenQuery, cropTokenQuery);
-
+    const returnedTokens = { seedTokens: {}, cropTokens: {} };
     if (seedTokenQuery) {
       const returnedSeed: {} = await selectUserFieldTokens(seedTokenQuery);
       returnedTokens.seedTokens = returnedSeed;
@@ -41,7 +37,6 @@ async function getUserFieldTokens(req: Request, res: Response): Promise<void> {
     if (cropTokenQuery) {
       let returnedCrop: {} = await selectUserFieldTokens(cropTokenQuery);
       returnedTokens.cropTokens = returnedCrop;
-      console.log(returnedTokens);
     }
     if (Object.keys(returnedTokens).length) {
       res.status(200);

@@ -4,7 +4,7 @@ import path from 'path';
 
 async function getAllFields(req: Request, res: Response): Promise<void> {
   try {
-    const fields: any = await getFields();
+    const fields: {} = await getFields();
     res.status(200);
     res.send(fields);
   } catch (err) {
