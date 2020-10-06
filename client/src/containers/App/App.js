@@ -21,7 +21,7 @@ function App() {
   const [splash, setSplash] = useState(false)
 
   //Get tracked tokens and fields from SimpleFi db
-  useEffect(() => {
+   useEffect(() => {
     const getTokens = apis.getTokens();
     const getFields = apis.getFields();
     Promise.all([getTokens, getFields])
@@ -51,7 +51,7 @@ function App() {
         const resetUserFields = setUserFields([]);
         Promise.all([resetUserTokens, resetUserFields])
           .then(resets => setUserAccount(newAccount))
-      
+
     } else {
       alert('Please install Metamask to use SimpleFi (https://metamask.io/)')
     }

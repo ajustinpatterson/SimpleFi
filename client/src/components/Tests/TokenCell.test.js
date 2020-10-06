@@ -6,8 +6,10 @@ import {
   cleanup,
   screen
 } from "@testing-library/react";
-import TokenCell from '../TokenCell/TokenCell'
+import TokenCell from '../TokenCellHeader/TokenCellHeader'
 
+
+// currently broken after the tokencell refactor
 
 describe("TokenCell", () => {
 
