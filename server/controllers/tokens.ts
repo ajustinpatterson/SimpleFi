@@ -20,18 +20,18 @@ async function getAllTokens(req: Request, res: Response): Promise<void> {
 
 async function getUserFieldTokens(req: Request, res: Response): Promise<void> {
   try {
-    tokenIds: [] = JSON.parse(req.params.tokenIds);
+    let tokenIds: any = JSON.parse(req.params.tokenIds);
     const { seedTokens, cropTokens } = tokenIds;
-    const seedTokenQuery: {} = generateFieldTokenQuery(seedTokens);
-    const cropTokenQuery: {} = generateFieldTokenQuery(cropTokens);
-    const returnedTokens = {};
+    const seedTokenQuery: string = generateFieldTokenQuery(seedTokens);
+    const cropTokenQuery: string = generateFieldTokenQuery(cropTokens);
+    const returnedTokens: any = {};
 
     if (seedTokenQuery) {
-      const returnedSeed: {} = await selectUserFieldTokens(seedTokenQuery);
+      const returnedSeed = await selectUserFieldTokens(seedTokenQuery);
       returnedTokens.seedTokens = returnedSeed;
     }
     if (cropTokenQuery) {
-      returnedCrop = await selectUserFieldTokens(cropTokenQuery);
+      let returnedCrop = await selectUserFieldTokens(cropTokenQuery);
       returnedTokens.cropTokens = returnedCrop;
     }
     if (Object.keys(returnedTokens).length) {
