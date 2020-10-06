@@ -10,23 +10,23 @@ declare module namespace {
   export interface Instructions {
     how: string;
   }
+}
 
-  export interface RootObject {
-    field_id: string;
-    name: string;
-    protocol_id: string;
-    address: string;
-    yield_type: YieldType;
-    instructions: Instructions;
-    risk_level: number;
-    seed_token_1: string;
-    seed_token_2: string;
-    seed_token_3?: any;
-    seed_token_4?: any;
-    crop_token_1: string;
-    crop_token_2?: any;
-    receipt_token: string;
-  }
+export interface RootObject {
+  field_id: string;
+  name: string;
+  protocol_id: string;
+  address: string;
+  yield_type: namespace.YieldType;
+  instructions: namespace.Instructions;
+  risk_level: number;
+  seed_token_1: string;
+  seed_token_2: string;
+  seed_token_3?: any;
+  seed_token_4?: any;
+  crop_token_1: string;
+  crop_token_2?: any;
+  receipt_token: string;
 }
 
 async function getFields(): Promise<string> {
