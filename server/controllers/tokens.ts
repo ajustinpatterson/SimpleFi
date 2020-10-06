@@ -23,12 +23,17 @@ async function getUserFieldTokens(req: Request, res: Response): Promise<void> {
     const {
       seedTokens,
       cropTokens,
-    }: { seedTokens: undefined | {}; cropTokens: undefined | {} } = JSON.parse(
+    }: { seedTokens: undefined & {}; cropTokens: undefined & {} } = JSON.parse(
       req.params.tokenIds,
     );
     const seedTokenQuery: string = generateFieldTokenQuery(seedTokens);
     const cropTokenQuery: string = generateFieldTokenQuery(cropTokens);
-    const returnedTokens: undefined | {} = { seedTokens, cropTokens };
+    const returnedTokens:
+      | { seedTokens: undefined | {}; cropTokens: undefined | {} }
+      | undefined = {
+      seedTokens,
+      cropTokens,
+    };
     if (seedTokenQuery) {
       const returnedSeed: undefined | {} = await selectUserFieldTokens(
         seedTokenQuery,
