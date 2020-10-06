@@ -5,25 +5,52 @@ import { holdingHeaders, holdingCurrencyCells, farmingHeaders, earningHeaders } 
 import { Switch, Route, Link } from 'react-router-dom';
 import HoldingChart from '../../components/HoldingChart/HoldingChart'
 
-export default function MyAssets ({userTokens, userFields, apis, setSplash}) {
-  const [holdingValues, setHoldingValues] = useState([]);
-  const [fieldValues, setFieldValues] = useState([]);
-  const [priceApis, setPriceApis] = useState([]);
+interface MyAssetsProps {
+  userTokens: {
+    isBase: boolean;
+    lockedBalance: number[];
+    balance: number;
+    price_api: number;
+    name: string;
+    currentPrice: number;
+  }[];
+  userFields: {
+    name: string;
+    balance: number;
+    seedTokens: {
+      name: string;
+    }[];
+    cropTokens: {
+      name: string;
+    }[];
+  }[];
+  apis: {
+    currentPrice: Function;
+  }
+  setSplash: Function;
+}
+
+export default function MyAssets ({userTokens, userFields, apis, setSplash}: MyAssetsProps) {
+  const [holdingValues, setHoldingValues] = useState <any[]> ([]);
+  const [fieldValues, setFieldValues] = useState <(string[]|number[])[]>([]);
+  const [priceApis, setPriceApis] = useState <number[]>([]);
 
   useEffect(() => setSplash(true), []);
 
+  const reducer = (acc: number, curr:number) => acc + curr
+
   useEffect(() => {
-    const tempHoldingValues = [];
-    const tempPriceApis =[];
+    const tempHoldingValues: [string, string, string, string, number][] = [];
+    const tempPriceApis: number[] = [];
     userTokens.forEach(token => {
       if (token.isBase) {
         //TODO: modularise
         let lockedBalance = 0;
         let combinedBalance = 0;
-        let lockedPercent = 0;
+        let lockedPercent = '';
         const formatter = new Intl.NumberFormat("en-US", {style: 'percent'});
         if (token.lockedBalance) {
-          lockedBalance = token.lockedBalance.reduce(((acc, curr) => acc + curr.balance), 0);
+          lockedBalance = token.lockedBalance.reduce((reducer), 0);
         }
         if (token.balance) {
           combinedBalance = token.balance + lockedBalance;
@@ -37,6 +64,7 @@ export default function MyAssets ({userTokens, userFields, apis, setSplash}) {
       }
     })
     setHoldingValues(tempHoldingValues);
+    console.log(tempHoldingValues)
     setPriceApis(tempPriceApis);
   }, [userTokens])
 
@@ -48,10 +76,11 @@ export default function MyAssets ({userTokens, userFields, apis, setSplash}) {
       }
     }))
       .then(prices => {
-        const updatedHoldings = [];
+        const updatedHoldings: any[] = [];
         prices.forEach((price, i) => {
           const newValues = [...holdingValues[i]]
-          newValues[3] = (price * newValues[1]).toFixed(2); //set value
+          const numberForCalc = newValues[1]
+          newValues[3] = (price * numberForCalc).toFixed(2); //set value
           newValues[4] = price.toFixed(2); //set curr. price
           updatedHoldings.push(newValues);
         })
@@ -60,7 +89,7 @@ export default function MyAssets ({userTokens, userFields, apis, setSplash}) {
   }, [priceApis])
 
   useEffect(() => {
-    const tempFieldValues = [];
+    const tempFieldValues: (string[]|number[])[] = [];
     userFields.forEach(field => {
       const { name, balance, seedTokens, cropTokens} = field;
       let underlying = '';
@@ -70,7 +99,6 @@ export default function MyAssets ({userTokens, userFields, apis, setSplash}) {
       underlying = underlying.slice(0, -2);
       farming = farming.slice(0, -2);
       tempFieldValues.push([name, balance.toFixed(2), underlying, farming]);
-      console.log(userFields)
     })
     setFieldValues(tempFieldValues)
   

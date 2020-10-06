@@ -6,7 +6,7 @@ import TokenCellValue from '../TokenCellValue/TokenCellValue'
 interface SummaryProps {
   headers: string[]; 
   userValues: any[]; 
-  tableName: number; 
+  tableName: string; 
   currencyCells: boolean[]
 }
 
