@@ -3,12 +3,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const sequelize = new Sequelize(
-  process.env.DATABASE,
-  process.env.USERNAME,
-  process.env.PASSWORD,
+  `postgres://${process.env.USERNAME}:${process.env.PASSWORD}@localhost:${process.env.PORT}/${process.env.DATABASE}`,
   {
     //REL reminder to change the table name
-    host: 'localhost',
     dialect: 'postgres',
     logging: false,
     pool: {

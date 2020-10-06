@@ -29,7 +29,7 @@ export interface RootObject {
   receipt_token: string;
 }
 
-async function getFields(): Promise<string> {
+async function getFields(): Promise<undefined | {}> {
   try {
     const fields: any[] = await db.sequelize.query('select * from field');
     return fields[0];
