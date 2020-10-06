@@ -5,7 +5,7 @@ import { generateFieldTokenQuery } from './helpers';
 
 async function getAllTokens(req: Request, res: Response): Promise<void> {
   try {
-    const tokens: {} = await getTokens();
+    const tokens: undefined | {} = await getTokens();
     res.status(200);
     res.send(tokens);
   } catch (err) {
@@ -23,19 +23,23 @@ async function getUserFieldTokens(req: Request, res: Response): Promise<void> {
     const {
       seedTokens,
       cropTokens,
-    }: { seedTokens: string; cropTokens: string } = JSON.parse(
+    }: { seedTokens: undefined | {}; cropTokens: undefined | {} } = JSON.parse(
       req.params.tokenIds,
     );
     const seedTokenQuery: string = generateFieldTokenQuery(seedTokens);
     const cropTokenQuery: string = generateFieldTokenQuery(cropTokens);
-    const returnedTokens = { seedTokens: {}, cropTokens: {} };
+    const returnedTokens: undefined | {} = { seedTokens, cropTokens };
     if (seedTokenQuery) {
-      const returnedSeed: {} = await selectUserFieldTokens(seedTokenQuery);
+      const returnedSeed: undefined | {} = await selectUserFieldTokens(
+        seedTokenQuery,
+      );
       returnedTokens.seedTokens = returnedSeed;
       console.log(returnedTokens);
     }
     if (cropTokenQuery) {
-      let returnedCrop: {} = await selectUserFieldTokens(cropTokenQuery);
+      let returnedCrop: undefined | {} = await selectUserFieldTokens(
+        cropTokenQuery,
+      );
       returnedTokens.cropTokens = returnedCrop;
     }
     if (Object.keys(returnedTokens).length) {

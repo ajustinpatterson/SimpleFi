@@ -1,7 +1,7 @@
 import db from '.';
 import path from 'path';
 
-async function getTokens(): Promise<string> {
+async function getTokens(): Promise<undefined | {}> {
   try {
     // console.log('db is: ', await db.sequelize.query('select * from token'));
     const tokens: any[] = await db.sequelize.query('select * from token');
@@ -15,7 +15,9 @@ async function getTokens(): Promise<string> {
   }
 }
 
-async function selectUserFieldTokens(queryStr: string): Promise<{}> {
+async function selectUserFieldTokens(
+  queryStr: string,
+): Promise<undefined | {}> {
   try {
     const tokens: {} = await db.sequelize.query(
       `select * from token where ${queryStr}`,
