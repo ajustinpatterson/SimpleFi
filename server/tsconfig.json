@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "strictNullChecks": true,
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
     "module": "commonjs",
     "target": "ES2017",
     "declaration": true,
