@@ -1,32 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   act,
-  render,
-  wait,
-  fireEvent,
-  screen
+  render
 } from "@testing-library/react";
-import { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import App from '../App/App';
 import { BrowserRouter } from 'react-router-dom';
 import Apis from '../../apis' 
 jest.mock('ethers') //this is mocking the entire ethers library in the root
 jest.mock('../../apis')
-configure({adapter: new Adapter()});
-
+import { shallow, mount } from 'enzyme';
 
 describe("App", () => {
 
   const gotTokens = 'tokens'
-
+  
   beforeAll( async () => {
     jest.spyOn(Apis, 'getTokens')
     jest.spyOn(Apis, 'getFields')
+    jest.spyOn(Apis, 'createContracts')
 
-    Apis.getTokens.mockResolvedValue(gotTokens)
     await act( () => {
-      const wrapper = render(
+      render(
         <BrowserRouter>
           <App/>
         </BrowserRouter>
@@ -39,10 +33,44 @@ describe("App", () => {
     expect(Apis.getFields).toHaveBeenCalledTimes(1);
   });
 
-  it("should return the correct values from getToken and getFields api calls", async () => {
-    const wrapper = shallow(<App/>);
-    expect(wrapper.state('trackedTokens')).toBe(gotTokens);
+  it("should call setTrackedTokens, setTrackedFields and setAllTrackedLoaded", async () => {
+    expect(Apis.createContracts).toHaveBeenCalledTimes(2);
+  })
 
-  });
+
+// jest.mock('react', () => ({
+//   ...jest.requireActual('react'),
+//   useState: jest.fn(),
+// }));
+
+   // const wrapper = mount(
+    //   <BrowserRouter>
+    //     <App trackedTokens={gotTokens}/>
+    //   </BrowserRouter>);
+    // const appInstance = wrapper.instance();
+    // expect(appInstance.state.trackedTokens).toBe(gotTokens);
+
+  // it("should call setTrackedTokens, setTrackedFields and setAllTrackedLoaded", async () => {
+  //   const setTrackedTokens = jest.fn()
+  //   // const add = jest.fn()
+  //   // jest.spyOn(App, 'add')
+  //   const useStateSpy = jest.spyOn(React, 'useState')
+  //   useStateSpy.mockImplementation((trackedTokens) => [trackedTokens, setTrackedTokens])
+  //   // jest.spyOn(App, 'setTrackedTokens')
+  //   // jest.spyOn(useState, 'connectWallet')
+    
+  //   await act( async () => {
+  //     await render(
+  //       <BrowserRouter>
+  //         <App/>
+  //       </BrowserRouter>
+  //     )
+  //   })
+    
+  //   await expect(setTrackedTokens).toHaveBeenCalledTimes(1)
+  //   // expect(add).toHaveBeenCalledTimes(1)
+  //   // expect(screen.getByText('3')).toBeInTheDocument();
+  //   // await expect(setTrackedFields).toHaveBeenCalledTimes(1)
+  // });
 
 })

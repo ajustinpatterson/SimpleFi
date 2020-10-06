@@ -1,7 +1,12 @@
 import React from 'react';
 import './Nav.css';
 
-export default function Nav ({connect, splash}) {
+interface NavProps {
+  connect: (ev: React.MouseEvent<HTMLButtonElement>) => void;
+  splash: boolean;
+}
+
+export default function Nav ({connect, splash} : NavProps): JSX.Element {
   return (
     <nav>
       <div className="nav-title">{splash ? 'SimpleFi' : ""}</div>
