@@ -20,20 +20,26 @@ async function getAllTokens(req: Request, res: Response): Promise<void> {
 
 async function getUserFieldTokens(req: Request, res: Response): Promise<void> {
   try {
-    console.log('req.params is ', req.params);
-
-    const { seedTokens, cropTokens } = JSON.parse(req.params.tokenIds);
+    const {
+      seedTokens,
+      cropTokens,
+    }: { seedTokens: string; cropTokens: string } = JSON.parse(
+      req.params.tokenIds,
+    );
     const seedTokenQuery: string = generateFieldTokenQuery(seedTokens);
     const cropTokenQuery: string = generateFieldTokenQuery(cropTokens);
     const returnedTokens: any = {};
+    console.log('seed and crop are ', seedTokens, cropTokens);
+
+    console.log('queries are ', seedTokenQuery, cropTokenQuery);
 
     if (seedTokenQuery) {
-      const returnedSeed = await selectUserFieldTokens(seedTokenQuery);
+      const returnedSeed: {} = await selectUserFieldTokens(seedTokenQuery);
       returnedTokens.seedTokens = returnedSeed;
       console.log(returnedTokens);
     }
     if (cropTokenQuery) {
-      let returnedCrop = await selectUserFieldTokens(cropTokenQuery);
+      let returnedCrop: {} = await selectUserFieldTokens(cropTokenQuery);
       returnedTokens.cropTokens = returnedCrop;
       console.log(returnedTokens);
     }

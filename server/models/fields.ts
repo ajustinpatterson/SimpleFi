@@ -31,7 +31,7 @@ export interface RootObject {
 
 async function getFields(): Promise<string> {
   try {
-    const fields: any = await db.sequelize.query('select * from field');
+    const fields: any[] = await db.sequelize.query('select * from field');
     return fields[0];
   } catch (err) {
     console.error(
