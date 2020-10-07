@@ -77,8 +77,8 @@ export default function MyAssets ({userTokens, userFields, apis, setSplash}: MyA
         const updatedHoldings: any[] = [];
         prices.forEach((price, i) => {
           const newValues = [...holdingValues[i]]
-          const numberForCalc = Number(newValues[1])
-          newValues[3] = (price * numberForCalc).toFixed(2); //set value
+          const numberForCalc = newValues[1]
+          newValues[3] = (price * +numberForCalc).toFixed(2); //set value
           newValues[4] = price.toFixed(2); //set curr. price
           updatedHoldings.push(newValues);
           console.log('newvalues', Array.isArray(newValues))
