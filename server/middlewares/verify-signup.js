@@ -1,7 +1,3 @@
-import db from '../models';
-
-import path from 'path';
-import { Request, Response, NextFunction } from 'express';
 import User from '../models/user';
 
 const checkDuplicateUsernameOrEmail = (req, res, next) => {
@@ -34,4 +30,4 @@ const checkDuplicateUsernameOrEmail = (req, res, next) => {
   });
 };
 
-export default verifySignup;
+export default checkDuplicateUsernameOrEmail;
