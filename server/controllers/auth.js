@@ -25,37 +25,38 @@ exports.signup = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
-exports.signin = (req, res) => {
-  db.default.UserFactory.findOne({
-    where: {
-      username: req.body.username,
-    },
-  })
-    .then((user) => {
-      if (!user) {
-        return res.status(404).send({ message: 'User Not found.' });
-      }
-      var passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password,
-      );
-      if (!passwordIsValid) {
-        return res.status(401).send({
-          accessToken: null,
-          message: 'Invalid Password!',
-        });
-      }
-      var token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400, // 24 hours
-      });
-      res.status(200).send({
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        accessToken: token,
-      });
-    })
-    .catch((err) => {
-      res.status(500).send({ message: err.message });
+exports.signin = async (req, res) => {
+  console.log('user is ', req.body.username);
+  try {
+    const user = await db.default.UserFactory.findOne({
+      where: {
+        username: req.body.username,
+      },
     });
+    if (!user) {
+      return res.status(404).send({ message: 'User Not found.' });
+    }
+    console.log('right before bcrypt', req.body.password, user.password);
+    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+    if (!passwordIsValid) {
+      return res.status(401).send({
+        accessToken: null,
+        message: 'Invalid Password!',
+      });
+    }
+    console.log('password is valid!', passwordIsValid);
+    console.log('config info is ', config);
+    var token = jwt.sign({ id: user.id }, config.default.secret, {
+      expiresIn: 86400, // 24 hours
+    });
+    console.log('token is ', token);
+    res.status(200).send({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      accessToken: token,
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
 };

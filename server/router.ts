@@ -11,6 +11,6 @@ router.get('/fields', verifyToken, controllers.getAllFields);
 router.get('/userfieldtokens/:tokenIds', controllers.getUserFieldTokens);
 
 router.post('/signup', controllers.signup);
-router.post('/login', controllers.signin);
+router.post('/signin', controllers.signin);
 
 export { router };
