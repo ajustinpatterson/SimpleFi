@@ -31,7 +31,7 @@ interface MyAssetsProps {
 }
 
 export default function MyAssets ({userTokens, userFields, apis, setSplash}: MyAssetsProps) {
-  const [holdingValues, setHoldingValues] = useState <any[]> ([]);
+  const [holdingValues, setHoldingValues] = useState <(string|number)[][]> ([]);
   const [fieldValues, setFieldValues] = useState <(string[]|number[])[]>([]);
   const [priceApis, setPriceApis] = useState <number[]>([]);
 
@@ -44,7 +44,6 @@ export default function MyAssets ({userTokens, userFields, apis, setSplash}: MyA
     const tempPriceApis: number[] = [];
     userTokens.forEach(token => {
       if (token.isBase) {
-        //TODO: modularise
         let lockedBalance = 0;
         let combinedBalance = 0;
         let lockedPercent = '';
@@ -64,7 +63,6 @@ export default function MyAssets ({userTokens, userFields, apis, setSplash}: MyA
       }
     })
     setHoldingValues(tempHoldingValues);
-    console.log(tempHoldingValues)
     setPriceApis(tempPriceApis);
   }, [userTokens])
 
@@ -80,9 +78,11 @@ export default function MyAssets ({userTokens, userFields, apis, setSplash}: MyA
         prices.forEach((price, i) => {
           const newValues = [...holdingValues[i]]
           const numberForCalc = newValues[1]
-          newValues[3] = (price * numberForCalc).toFixed(2); //set value
+          newValues[3] = (price * +numberForCalc).toFixed(2); //set value
           newValues[4] = price.toFixed(2); //set curr. price
           updatedHoldings.push(newValues);
+          console.log('newvalues', Array.isArray(newValues))
+          console.log('newvalues', newValues)
         })
         setHoldingValues(updatedHoldings)
       })
