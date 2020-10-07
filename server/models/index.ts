@@ -20,6 +20,7 @@ const sequelize = new Sequelize(
 const db: {} = {
   sequelize: sequelize,
   Sequelize: Sequelize,
+  findOne: Function,
 };
 
 export default { sequelize, Sequelize };
