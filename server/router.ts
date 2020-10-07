@@ -1,6 +1,4 @@
-const {
-  checkDuplicateUsernameOrEmail,
-} = require('./middlewares/verify-signup');
+const checkDuplicateUsernameOrEmail = require('./middlewares/verify-signup');
 const verifyToken = require('./middlewares/authJwt');
 import { response, Router } from 'express';
 import * as controllers from './controllers';

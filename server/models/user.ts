@@ -1,19 +1,26 @@
-import { userInfo } from 'os';
-import db from './';
+import { Sequelize, DataType, Model, DataTypes } from 'sequelize';
 
-(sequelize, Sequelize) => {
-  const User = sequelize.define('users', {
+export interface UserAttributes {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+}
+
+export const UserFactory = (
+  sequelize: Sequelize,
+  DataType: DataType,
+): Model<UserAttributes> => {
+  const User: any = sequelize.define('users', {
     username: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     password: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
   });
   return User;
 };
-
-export default User;
