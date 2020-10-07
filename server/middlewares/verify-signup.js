@@ -2,18 +2,11 @@ import db from '../models';
 
 import path from 'path';
 import { Request, Response, NextFunction } from 'express';
+import User from '../models/user';
 
-interface UserType {
-  findOne: Function;
-}
-
-const checkDuplicateUsernameOrEmail = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): any => {
+const checkDuplicateUsernameOrEmail = (req, res, next) => {
   // Username
-  db.findOne<UserType>({
+  User.findOne({
     where: {
       username: req.body.username,
     },
@@ -39,19 +32,6 @@ const checkDuplicateUsernameOrEmail = (
       next();
     });
   });
-};
-checkRolesExisted = (req, res, next) => {
-  if (req.body.roles) {
-    for (let i = 0; i < req.body.roles.length; i++) {
-      if (!ROLES.includes(req.body.roles[i])) {
-        res.status(400).send({
-          message: 'Failed! Role does not exist = ' + req.body.roles[i],
-        });
-        return;
-      }
-    }
-  }
-  next();
 };
 
 export default verifySignup;
