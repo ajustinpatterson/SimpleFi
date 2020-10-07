@@ -10,7 +10,7 @@ router.get('/tokens', verifyToken, controllers.getAllTokens);
 router.get('/fields', verifyToken, controllers.getAllFields);
 router.get('/userfieldtokens/:tokenIds', controllers.getUserFieldTokens);
 
-router.post('/signup', checkDuplicateUsernameOrEmail, controllers.signup);
+router.post('/signup', controllers.signup);
 router.post('/login', controllers.signin);
 
 export { router };

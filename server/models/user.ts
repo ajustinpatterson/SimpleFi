@@ -1,4 +1,4 @@
-import { Sequelize, DataType, Model, DataTypes } from 'sequelize';
+import { Sequelize, Model, DataTypes } from 'sequelize';
 
 export interface UserAttributes {
   id: number;
@@ -7,11 +7,8 @@ export interface UserAttributes {
   password: string;
 }
 
-export const UserFactory = (
-  sequelize: Sequelize,
-  DataType: DataType,
-): Model<UserAttributes> => {
-  const User: any = sequelize.define('users', {
+export const UserFactory = (sequelize: Sequelize, DataTypes: any): any => {
+  return sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
     },
@@ -22,5 +19,4 @@ export const UserFactory = (
       type: DataTypes.STRING,
     },
   });
-  return User;
 };

@@ -25,6 +25,7 @@
     "@types/validator": "^13.1.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
     "jest": "^26.4.2",
     "jsonwebtoken": "^8.5.1",
     "ts-node": "^9.0.0",

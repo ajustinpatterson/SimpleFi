@@ -1,18 +1,20 @@
-const db = require('../models');
 const config = require('../config/auth.config');
-const User = db.user;
+const db = require('../models/index.js');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 exports.signup = (req, res) => {
+  console.log('db exists?', db.models);
+  console.log('db.userfactory exists?', db.UserFactory);
+
   // Save User to Database
-  return User.findOne({
+  return db.UserFactory.findOne({
     where: {
       username: req.body.username,
     },
   })
     .then((data) => {
       if (!data.username) {
-        User.create({
+        db.UserFactory.create({
           username: req.body.username,
           email: req.body.email,
           password: bcrypt.hashSync(req.body.password, 8),
@@ -26,7 +28,7 @@ exports.signup = (req, res) => {
     });
 };
 exports.signin = (req, res) => {
-  User.findOne({
+  db.UserFactory.findOne({
     where: {
       username: req.body.username,
     },
