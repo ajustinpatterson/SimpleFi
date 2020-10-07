@@ -8,15 +8,19 @@ export interface UserAttributes {
 }
 
 export const UserFactory = (sequelize: Sequelize, DataTypes: any): any => {
-  return sequelize.define('User', {
-    username: {
-      type: DataTypes.STRING,
+  return sequelize.define(
+    'User',
+    {
+      username: {
+        type: DataTypes.STRING,
+      },
+      email: {
+        type: DataTypes.STRING,
+      },
+      password: {
+        type: DataTypes.STRING,
+      },
     },
-    email: {
-      type: DataTypes.STRING,
-    },
-    password: {
-      type: DataTypes.STRING,
-    },
-  });
+    { freezeTableName: true, timestamps: false },
+  );
 };

@@ -2,29 +2,28 @@ const config = require('../config/auth.config');
 const db = require('../models/index.js');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-exports.signup = (req, res) => {
-  console.log('userfattery?', db.default.UserFactory);
-
-  // Save User to Database
-  return db.default.UserFactory.findOne({
-    where: {
-      username: req.body.username,
-    },
-  })
-    .then((data) => {
-      if (!data.username) {
-        db.default.UserFactory.create({
-          username: req.body.username,
-          email: req.body.email,
-          password: bcrypt.hashSync(req.body.password, 8),
-        }).then(res.send({ message: 'User was registered successfully!' }));
-      } else {
-        res.send({ message: 'Username taken' });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({ message: err.message });
+exports.signup = async (req, res) => {
+  try {
+    // Save User to Database
+    console.log('req before query is ', req.body);
+    const userExists = await db.default.UserFactory.findOne({
+      where: {
+        username: req.body.username,
+      },
     });
+    if (!userExists) {
+      db.default.UserFactory.create({
+        id: req.body.id,
+        username: req.body.username,
+        email: req.body.email,
+        password: bcrypt.hashSync(req.body.password, 8),
+      }).then(res.send({ message: 'User was registered successfully!' }));
+    } else {
+      res.send({ message: 'Username taken' });
+    }
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
 };
 exports.signin = (req, res) => {
   db.default.UserFactory.findOne({
