@@ -38,7 +38,7 @@ const sequelize = new Sequelize(
 //     db[model.name] = model;
 //   });
 const User = UserFactory.UserFactory(sequelize, Sequelize.DataTypes);
-db.User = User;
+db.UserFactory = User;
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
