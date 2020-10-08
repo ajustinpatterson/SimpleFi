@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import apis from '../../apis';
 import { metamaskConnect } from '../../authentication/web3';
-import './App.css';
-import Login from '../../components/Login/Login';
 import Nav from '../../components/Nav/Nav';
 import Welcome from '../../components/Welcome/Welcome';
 import MyAssets from '../MyAssets/MyAssets';
@@ -48,8 +46,6 @@ function Dashboard() {
       setAllTrackedLoaded(true);
     });
   }, []);
-
-  console.log('tracked tokens are ', trackedTokens);
 
   //Create token and field contract interfaces
   useEffect(() => {
