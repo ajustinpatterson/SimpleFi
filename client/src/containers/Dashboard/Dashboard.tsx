@@ -25,7 +25,11 @@ interface TrackedTokens {
   lockedBalance: number;
 }
 
-function Dashboard() {
+interface DashboardProps {
+  authToken: string;
+}
+
+function Dashboard ({authToken}: DashboardProps) {
   const [trackedTokens, setTrackedTokens] = useState<any[]>([]);
   const [trackedFields, setTrackedFields] = useState<any[]>([]);
   const [allTrackedLoaded, setAllTrackedLoaded] = useState<boolean>(false);
@@ -38,8 +42,8 @@ function Dashboard() {
 
   //Get tracked tokens and fields from SimpleFi db
   useEffect(() => {
-    const getTokens = apis.getTokens();
-    const getFields = apis.getFields();
+    const getTokens = apis.getTokens(authToken);
+    const getFields = apis.getFields(authToken);
     Promise.all([getTokens, getFields]).then(([tokens, fields]) => {
       setTrackedTokens(tokens);
       setTrackedFields(fields);

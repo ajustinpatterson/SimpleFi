@@ -18,7 +18,7 @@ function App() {
     </div>
   ) : (
     <div>
-      <Dashboard/>
+      <Dashboard authToken ={authToken}/>
     </div>
   );
 }
