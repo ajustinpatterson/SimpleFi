@@ -1,6 +1,7 @@
 import { currentPrice } from './coinGecko/currentPrice';
 import { getTokens, getUserFieldTokens } from './simpleFiDb/tokens';
 import { getFields } from './simpleFiDb/fields';
+import { signIn } from './auth/auth';
 import {createContracts, getUserBalance, rewinder} from './ethereum/ethData';
 
 export default {
@@ -10,5 +11,6 @@ export default {
   getFields,
   createContracts,
   getUserBalance,
-  rewinder
+  rewinder,
+  signIn,
 }

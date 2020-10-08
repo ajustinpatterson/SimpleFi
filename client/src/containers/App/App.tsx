@@ -38,6 +38,7 @@ function App() {
   const [rewoundFlag, setRewoundFlag] = useState<boolean>(false);
   const [splash, setSplash] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [authToken, setAuthToken] = useState<string>('');
 
   //Get tracked tokens and fields from SimpleFi db
   useEffect(() => {
@@ -220,7 +221,7 @@ function App() {
 
   return !loggedIn ? (
     <div>
-      <Login setLoggedIn={setLoggedIn} />
+      <Login setLoggedIn={setLoggedIn} setAuthToken ={setAuthToken}/>
     </div>
   ) : (
     <div>
